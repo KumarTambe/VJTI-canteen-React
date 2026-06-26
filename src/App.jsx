@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 
-
 import Admin from './pages/Admin.jsx'
 import Chat from './pages/Chat.jsx'
 import Dashboard from './pages/Dashboard'
