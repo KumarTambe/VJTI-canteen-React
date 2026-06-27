@@ -6,15 +6,24 @@ import Chat from './pages/Chat.jsx'
 import Dashboard from './pages/Dashboard'
 import Login from './pages/Login.jsx'
 import Navbar from './components/Navbar.jsx'
+import ProtectedRoute from './components/ProtectedRoutes.jsx'
 
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path='/chat' element={<Chat />} />
+        <Route path='/chat' element={
+          <ProtectedRoute>
+            <Chat />
+          </ProtectedRoute>
+        } />
         <Route path='/dashboard' element={<Dashboard />} />
-        <Route path='/admin' element={<Admin />} />
+        <Route path='/admin' element={
+          <ProtectedRoute>
+            <Admin />
+          </ProtectedRoute>
+        } />
         <Route path='/login' element={<Login />} />
       </Routes>
     </BrowserRouter>
