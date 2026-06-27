@@ -5,10 +5,12 @@ import Admin from './pages/Admin.jsx'
 import Chat from './pages/Chat.jsx'
 import Dashboard from './pages/Dashboard'
 import Login from './pages/Login.jsx'
+import Navbar from './components/Navbar.jsx'
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path='/chat' element={<Chat />} />
         <Route path='/dashboard' element={<Dashboard />} />
