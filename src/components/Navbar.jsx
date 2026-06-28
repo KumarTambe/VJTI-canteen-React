@@ -9,7 +9,9 @@ function Navbar() {
 
     function handleLogOut() {
         setIsLoggedIn(false);
+        setIsAdmin(false)
         setUser(null);
+        navigate('/login')
     }
 
     function handleLogIn() {
@@ -26,6 +28,10 @@ function Navbar() {
                         <h1>{user}</h1>
                         <button onClick={handleLogOut}>Log out</button>
                         <Link to='/chat'>Go to chat</Link>
+                        {isAdmin &&
+                            <Link to='/admin'>Admin</Link>
+
+                        }
                     </>
                     :
                     <>
