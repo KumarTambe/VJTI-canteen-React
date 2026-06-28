@@ -35,17 +35,36 @@ function AIRecommender() {
     }
 
     return (
-        <>
-            <h1>AI recommendation !</h1>
-            {loading && <p>Getting reccommendation...</p>}
-            {recommendation && <p>{recommendation}</p>}
-            <input
-                type="text"
-                value={mood}
-                onChange={(e) => setMood(e.target.value)}
-            />
-            <button onClick={handleSubmit}>Submit</button>
-        </>
+        <div>
+            <p className="text-gray-400 mb-4">Tell us what you're in the mood for and we'll suggest the perfect dish!</p>
+
+            <div className="flex gap-3 mb-4">
+                <input
+                    type="text"
+                    placeholder="e.g. something spicy and filling..."
+                    value={mood}
+                    onChange={(e) => setMood(e.target.value)}
+                    className="flex-1 bg-gray-800 text-white px-4 py-3 rounded-lg outline-none focus:ring-2 focus:ring-orange-400"
+                />
+                <button
+                    onClick={handleSubmit}
+                    disabled={loading}
+                    className="bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white font-semibold px-6 py-3 rounded-lg transition"
+                >
+                    {loading ? '...' : 'Ask AI'}
+                </button>
+            </div>
+
+            {loading && (
+                <p className="text-gray-400 animate-pulse">Getting recommendation...</p>
+            )}
+
+            {recommendation && (
+                <div className="bg-gray-700 rounded-xl p-4 mt-2">
+                    <p className="text-white leading-relaxed">{recommendation}</p>
+                </div>
+            )}
+        </div>
     )
 }
 

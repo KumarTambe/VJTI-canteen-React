@@ -19,26 +19,36 @@ function Navbar() {
     }
 
     return (
-        <>
-            <h1>VJTI canteen</h1>
-            <Link to='/dashboard'>Dashboard</Link>
-            {
-                isLoggedIn ?
-                    <>
-                        <h1>{user}</h1>
-                        <button onClick={handleLogOut}>Log out</button>
-                        <Link to='/chat'>Go to chat</Link>
-                        {isAdmin &&
-                            <Link to='/admin'>Admin</Link>
+        <nav className="bg-gray-900 text-white px-6 py-4 flex items-center justify-between shadow-lg">
+            <h1 className="text-3xl font-bold text-orange-400">🍽️&nbsp;&nbsp;VJTI Canteen</h1>
 
-                        }
-                    </>
-                    :
+            <div className="flex items-center gap-6">
+                <Link to='/dashboard' className="hover:text-orange-400 transition">Menu</Link>
+
+                {isLoggedIn ? (
                     <>
-                        <button onClick={handleLogIn}>Log in</button>
+                        <Link to='/chat' className="hover:text-orange-400 transition">Chat</Link>
+                        {isAdmin && (
+                            <Link to='/admin' className="hover:text-orange-400 transition">Admin</Link>
+                        )}
+                        <span className="text-orange-400 font-semibold">{user}</span>
+                        <button
+                            onClick={handleLogOut}
+                            className="bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded-lg transition"
+                        >
+                            Logout
+                        </button>
                     </>
-            }
-        </>
+                ) : (
+                    <button
+                        onClick={handleLogIn}
+                        className="bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded-lg transition"
+                    >
+                        Login
+                    </button>
+                )}
+            </div>
+        </nav>
     )
 }
 
