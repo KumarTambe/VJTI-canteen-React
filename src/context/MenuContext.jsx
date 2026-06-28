@@ -3,6 +3,11 @@ import { createContext, useState } from "react";
 export const MenuContext = createContext();
 
 export function MenuProvider({ children }) {
+
+    const [messages, setMessages] = useState([
+        { id: 1, dishId: 1, user: 'XYZ', text: 'Idli is amazing today!' }
+    ])
+
     const [items, setItems] = useState([
         { id: 1, name: "Idli", category: "Breakfast", waitTime: "10 sec" },
         { id: 2, name: "Dosa", category: "Breakfast", waitTime: "5 min" },
@@ -11,8 +16,8 @@ export function MenuProvider({ children }) {
     ])
 
     return (
-        <MenuContext.Provider value={{ items, setItems }}>
+        <MenuContext.Provider value={{ items, setItems, messages, setMessages }}>
             {children}
-        </MenuContext.Provider>
+        </MenuContext.Provider >
     )
 }

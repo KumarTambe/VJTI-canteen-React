@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard'
 import Login from './pages/Login.jsx'
 import Navbar from './components/Navbar.jsx'
 import ProtectedRoute from './components/ProtectedRoutes.jsx'
+import DishChat from './pages/DishChat.jsx'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           </ProtectedRoute>
         } />
         <Route path='/login' element={<Login />} />
+        <Route path='/dish/:id' element={<DishChat />} />
       </Routes>
     </BrowserRouter>
   )

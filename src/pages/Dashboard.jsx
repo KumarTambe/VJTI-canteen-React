@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { MenuContext } from "../context/MenuContext";
 import AIRecommender from "../components/AIRecommender"
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
     const { user, setUser, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin } = useContext(AuthContext)
@@ -9,6 +10,8 @@ function Dashboard() {
 
     const [searchTerm, setSearchTerm] = useState('');
     const [debouncedSearch, setDebouncedSearch] = useState('')
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -52,6 +55,12 @@ function Dashboard() {
                                         <div key={item.id} className="bg-gray-800 rounded-xl p-4 hover:bg-gray-700 transition">
                                             <h3 className="text-lg font-semibold">{item.name}</h3>
                                             <p className="text-gray-400 text-sm mt-1">⏱ {item.waitTime}</p>
+                                            <button
+                                                onClick={() => navigate(`/dish/${item.id}`)}
+                                                className="mt-3 text-sm text-orange-400 hover:text-orange-300 transition"
+                                            >
+                                                💬 Discuss
+                                            </button>
                                         </div>
                                     ))}
                             </div>

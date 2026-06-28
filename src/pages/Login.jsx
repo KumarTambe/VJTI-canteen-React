@@ -8,25 +8,31 @@ function Login() {
     const [input, setInput] = useState('');
     const navigate = useNavigate();
 
-
     function handleLogIn() {
-        setIsLoggedIn(true);
-        setUser(input);
-        if (input == 'admin') {
-            setIsAdmin(true)
-            navigate('/dashboard')
+        if (!input.trim() || input.trim().length < 3) {
+            alert('Please enter a valid username (min 3 characters)')
+            return
         }
+        setIsLoggedIn(true)
+        setUser(input)
+        if (input === 'admin') setIsAdmin(true)
         navigate('/dashboard')
     }
 
 
+
     return (
-        <div className="min-h-screen bg-gray-950 flex items-center justify-center">
+        <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-orange-950 flex items-center justify-center">
             <div className="bg-gray-900 p-8 rounded-2xl shadow-2xl w-full max-w-md">
                 <h1 className="text-3xl font-bold text-orange-400 text-center mb-2">🍽️ VJTI Canteen</h1>
                 <p className="text-gray-400 text-center mb-8">Sign in to continue</p>
 
                 <input
+                    onKeyDown={
+                        (e) => {
+                            if (e.key === 'Enter') handleLogIn();
+                        }
+                    }
                     type="text"
                     placeholder="Enter your username"
                     value={input}

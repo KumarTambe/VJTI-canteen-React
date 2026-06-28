@@ -20,7 +20,7 @@ function Navbar() {
 
     return (
         <nav className="bg-gray-900 text-white px-6 py-4 flex items-center justify-between shadow-lg">
-            <h1 className="text-3xl font-bold text-orange-400">🍽️&nbsp;&nbsp;VJTI Canteen</h1>
+            <Link to='/dashboard' className="text-3xl font-bold text-orange-400">🍽️&nbsp;&nbsp;VJTI Canteen</Link>
 
             <div className="flex items-center gap-6">
                 <Link to='/dashboard' className="hover:text-orange-400 transition">Menu</Link>
