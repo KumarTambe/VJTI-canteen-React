@@ -18,7 +18,7 @@ function Chat() {
             <div className="max-w-2xl mx-auto">
                 <h1 className="text-3xl font-bold text-orange-400 mb-6">💬 Discussion Board</h1>
 
-                <div className="bg-gray-900 rounded-2xl p-6 mb-6 min-h-96 max-h-[600px] overflow-y-auto flex flex-col gap-3">
+                <div className="bg-gray-900 rounded-2xl p-6 mb-6 min-h-96 max-h-150 overflow-y-auto flex flex-col gap-3">
                     {savedMessages.map((message) => (
                         <div key={message.id} className="bg-gray-800 rounded-xl px-4 py-3">
                             <span className="text-orange-400 font-semibold">{message.user}</span>

@@ -26,7 +26,7 @@ function DishChat() {
                 </h1>
                 <p className="text-gray-400 mb-6">What do people think about this dish?</p>
 
-                <div className="bg-gray-900 rounded-2xl p-6 mb-6 min-h-64 max-h-[500px] overflow-y-auto flex flex-col gap-3">
+                <div className="bg-gray-900 rounded-2xl p-6 mb-6 min-h-64 max-h-125 overflow-y-auto flex flex-col gap-3">
                     {dishMessages.length === 0 ? (
                         <p className="text-gray-500 text-center">No messages yet. Be the first to comment!</p>
                     ) : (

@@ -22,7 +22,7 @@ function Login() {
 
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-orange-950 flex items-center justify-center">
+        <div className="min-h-screen bg-linear-to-br from-gray-950 via-gray-900 to-orange-950 flex items-center justify-center">
             <div className="bg-gray-900 p-8 rounded-2xl shadow-2xl w-full max-w-md">
                 <h1 className="text-3xl font-bold text-orange-400 text-center mb-2">🍽️ VJTI Canteen</h1>
                 <p className="text-gray-400 text-center mb-8">Sign in to continue</p>
