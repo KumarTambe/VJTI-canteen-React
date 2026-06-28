@@ -1,15 +1,11 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { MenuContext } from "../context/MenuContext";
 
 function Dashboard() {
     const { user, setUser, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin } = useContext(AuthContext)
 
-    const [items, setItems] = useState([
-        { id: 1, name: "Idli", category: "Breakfast", waitTime: "10 sec" },
-        { id: 2, name: "Dosa", category: "Breakfast", waitTime: "5 min" },
-        { id: 3, name: "Vadapav", category: "Snack", waitTime: "10 sec" },
-        { id: 4, name: "Noodles", category: "Heavy food", waitTime: "10 min" },
-    ])
+    const { items, setItems } = useContext(MenuContext);
     const [searchTerm, setSearchTerm] = useState('');
 
     // filter items acc. to the search term of user
