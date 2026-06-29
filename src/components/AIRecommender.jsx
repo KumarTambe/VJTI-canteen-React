@@ -7,12 +7,22 @@ function AIRecommender() {
     const [mood, setMood] = useState('');
     const [loading, setLoading] = useState(false);
     const [recommendation, setRecommendation] = useState('')
+    const [feedback, setFeedback] = useState(null)
+
+    function handleFeedback(value) {
+        setFeedback(value);
+        localStorage.setItem('feedback', JSON.stringify({
+            mood: mood,
+            recommendation: recommendation,
+            helpful: value == 'helpful'
+        }))
+    }
 
     async function handleSubmit() {
         setLoading(true)
         try {
             const response = await fetch(
-                `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${import.meta.env.VITE_GEMINI_API_KEY}`,
+                `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${import.meta.env.VITE_GEMINI_API_KEY}`,
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -64,6 +74,27 @@ function AIRecommender() {
             {recommendation && (
                 <div className="bg-gray-700 rounded-xl p-4 mt-2">
                     <p className="text-white leading-relaxed">{recommendation}</p>
+
+                    {!feedback ? (
+                        <div className="flex gap-3 mt-4">
+                            <button
+                                onClick={() => handleFeedback('helpful')}
+                                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition"
+                            >
+                                👍 Helpful
+                            </button>
+                            <button
+                                onClick={() => handleFeedback('not-helpful')}
+                                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition"
+                            >
+                                👎 Not Helpful
+                            </button>
+                        </div>
+                    ) : (
+                        <p className="text-gray-400 mt-4 text-sm">
+                            Thanks for the feedback! {feedback === 'helpful' ? '😊' : '🙏'}
+                        </p>
+                    )}
                 </div>
             )}
         </div>
