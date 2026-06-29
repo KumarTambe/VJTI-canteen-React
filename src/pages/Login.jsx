@@ -9,8 +9,12 @@ function Login() {
     const navigate = useNavigate();
 
     function handleLogIn() {
-        if (!input.trim() || input.trim().length < 3) {
+        if (!input.trim() || input.trim().length < 3 && input.trim()) {
             alert('Please enter a valid username (min 3 characters)')
+            return
+        }
+        if (!/^[a-zA-Z]+$/.test(input.trim())) {
+            alert('Username must contain letters only')
             return
         }
         setIsLoggedIn(true)
