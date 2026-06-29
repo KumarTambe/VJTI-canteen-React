@@ -8,6 +8,7 @@ import Login from './pages/Login.jsx'
 import Navbar from './components/Navbar.jsx'
 import ProtectedRoute from './components/ProtectedRoutes.jsx'
 import DishChat from './pages/DishChat.jsx'
+import NotFound from './pages/NotFound.jsx'
 
 function App() {
   return (
