@@ -28,6 +28,8 @@ function AIRecommender() {
             const data = await response.json()
             const result = data.candidates[0].content.parts[0].text
             setRecommendation(result)
+            setMood('')
+            setLoading(false)
         } catch (error) {
             setRecommendation('Sorry, could not get recommendation. Try again.')
         }

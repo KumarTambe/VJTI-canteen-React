@@ -1,9 +1,11 @@
 import { useContext, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { MenuContext } from "../context/MenuContext";
 import { AuthContext } from "../context/AuthContext";
 
+
 function DishChat() {
+    const navigate = useNavigate();
     const { id } = useParams();
     const { items, messages, setMessages } = useContext(MenuContext)
     const { user, isLoggedIn } = useContext(AuthContext)
@@ -24,6 +26,12 @@ function DishChat() {
                 <h1 className="text-3xl font-bold text-orange-400 mb-2">
                     💬 {dish ? dish.name : 'Dish'} Discussion
                 </h1>
+                <button
+                    onClick={() => navigate('/dashboard')}
+                    className="text-gray-400 hover:text-orange-400 transition mb-6 flex items-center gap-2"
+                >
+                    ← Back to Menu
+                </button>
                 <p className="text-gray-400 mb-6">What do people think about this dish?</p>
 
                 <div className="bg-gray-900 rounded-2xl p-6 mb-6 min-h-64 max-h-125 overflow-y-auto flex flex-col gap-3">

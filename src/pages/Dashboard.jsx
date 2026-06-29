@@ -66,6 +66,11 @@ function Dashboard() {
                             </div>
                         </div>
                     ))}
+                {filteredItems.length === 0 && (
+                    <p className="text-gray-500 text-center mt-12 text-lg">
+                        No dishes found for "{searchTerm}" 🍽️
+                    </p>
+                )}
 
                 <div className="mt-12 bg-gray-900 rounded-2xl p-6">
                     <h2 className="text-2xl font-bold text-orange-400 mb-4">🤖 AI Dish Recommender</h2>

@@ -27,6 +27,7 @@ function App() {
         } />
         <Route path='/login' element={<Login />} />
         <Route path='/dish/:id' element={<DishChat />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )

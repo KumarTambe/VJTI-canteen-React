@@ -13,6 +13,10 @@ function Admin() {
 
 
     function handleAdd() {
+        if (!dishName.trim() || !dishCategory || !dishWaitTime) {
+            alert('Please fill all the fields')
+            return
+        }
         setItems([...items, { id: Date.now(), name: dishName, category: dishCategory, waitTime: dishWaitTime }])
         setDishName('')
         setDishCategory('')

@@ -20,7 +20,6 @@ function Login() {
     }
 
 
-
     return (
         <div className="min-h-screen bg-linear-to-br from-gray-950 via-gray-900 to-orange-950 flex items-center justify-center">
             <div className="bg-gray-900 p-8 rounded-2xl shadow-2xl w-full max-w-md">
@@ -28,6 +27,7 @@ function Login() {
                 <p className="text-gray-400 text-center mb-8">Sign in to continue</p>
 
                 <input
+                    autoFocus
                     onKeyDown={
                         (e) => {
                             if (e.key === 'Enter') handleLogIn();
