@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 
 import Admin from './pages/Admin.jsx'
 import Chat from './pages/Chat.jsx'
@@ -15,6 +15,7 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
+        <Route path='/' element={<Navigate to='/dashboard' />} />
         <Route path='/chat' element={
           <ProtectedRoute>
             <Chat />
