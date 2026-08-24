@@ -1,11 +1,12 @@
 import express from 'express'
 import cors from 'cors'
-import router from './routes/authRoutes.js'
+import authRouter from './routes/authRoutes.js'
+import menuRouter from './routes/menuRoutes.js'
 
 const app = express()
 app.use(cors())
 app.use(express.json())
-app.use('/api/auth', router)
-console.log('Auth routes mounted')
+app.use('/api/auth', authRouter)
+app.use('/api/dishes', menuRouter)
 
 export default app
