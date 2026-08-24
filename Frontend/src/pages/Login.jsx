@@ -1,28 +1,34 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { AuthContext } from "../context/AuthContext";
 
 function Login() {
     const { user, setUser, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin } = useContext(AuthContext);
-    const [input, setInput] = useState('');
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const navigate = useNavigate();
 
-    function handleLogIn() {
-        if (!input.trim() || input.trim().length < 3 && input.trim()) {
-            alert('Please enter a valid username (min 3 characters)')
+    async function handleLogIn() {
+        if (!email.trim() || email.trim().length < 10 && email.trim()) {
+            alert('Please enter a valid email')
             return
         }
-        if (!/^[a-zA-Z]+$/.test(input.trim())) {
-            alert('Username must contain letters only')
-            return
+        const url = "http://localhost:3000/api/auth/login"
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            })
+            const data = await response.json()
+            localStorage.setItem('token', data.token)
+            setIsLoggedIn(true);
+            navigate('/dashboard')
+        } catch (err) {
+            console.log(err);
         }
-        setIsLoggedIn(true)
-        setUser(input)
-        if (input === 'admin') setIsAdmin(true)
-        navigate('/dashboard')
-    }
 
+    }
 
     return (
         <div className="min-h-screen bg-linear-to-br from-gray-950 via-gray-900 to-orange-950 flex items-center justify-center">
@@ -37,11 +43,17 @@ function Login() {
                             if (e.key === 'Enter') handleLogIn();
                         }
                     }
-                    type="text"
-                    placeholder="Enter your username"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="w-full bg-gray-800 text-white px-4 py-3 rounded-lg mb-4 outline-none focus:ring-2 focus:ring-orange-400"
+                />
+                <input
+                    type="password"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
 
                 <button
