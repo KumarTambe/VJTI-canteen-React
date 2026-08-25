@@ -47,7 +47,7 @@ function Register() {
             <div className="absolute top-1/4 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-violet-500/20 blur-3xl pointer-events-none"></div>
             <div className="absolute bottom-0 left-1/4 h-72 w-72 rounded-full bg-indigo-500/15 blur-3xl pointer-events-none"></div>
 
-            <div className={`relative bg-slate - 900 / 60 backdrop - blur - xl border border - slate - 700 / 80 p - 8 rounded - 2xl shadow - 2xl shadow - black / 40 w - full max - w - md float - card ${invalidShake ? 'shake-invalid' : ''} `}>
+            <div className={`relative bg-slate-900/60 backdrop-blur-xl border border-slate-700/80 p-8 rounded-2xl shadow-2xl shadow-black/40 w-full max-w-md float-card ${invalidShake ? 'shake-invalid' : ''}`}>
                 <h1 className="text-3xl font-extrabold tracking-tight text-amber-400 text-center mb-2">🍽️ VJTI Canteen</h1>
                 <p className="text-slate-400 text-center mb-8">Create your account</p>
 
