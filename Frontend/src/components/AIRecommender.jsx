@@ -48,7 +48,7 @@ function AIRecommender() {
 
     return (
         <div>
-            <p className="text-gray-400 mb-4">Tell us what you're in the mood for and we'll suggest the perfect dish!</p>
+            <p className="text-slate-400 mb-4">Tell us what you're in the mood for and we'll suggest the perfect dish!</p>
 
             <div className="flex gap-3 mb-4">
                 <input
@@ -56,42 +56,42 @@ function AIRecommender() {
                     placeholder="e.g. something spicy and filling..."
                     value={mood}
                     onChange={(e) => setMood(e.target.value)}
-                    className="flex-1 bg-gray-800 text-white px-4 py-3 rounded-lg outline-none focus:ring-2 focus:ring-orange-400"
+                    className="flex-1 bg-slate-800/80 text-white px-4 py-3 rounded-lg outline-none focus:ring-2 focus:ring-indigo-400 focus-visible:ring-2 focus-visible:ring-indigo-400 transition border border-slate-700"
                 />
                 <button
                     onClick={handleSubmit}
                     disabled={loading}
-                    className="bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white font-semibold px-6 py-3 rounded-lg transition"
+                    className="bg-amber-500 hover:bg-amber-600 disabled:opacity-50 text-white font-semibold px-6 py-3 rounded-lg transition btn-anim focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
                 >
                     {loading ? '...' : 'Ask AI'}
                 </button>
             </div>
 
             {loading && (
-                <p className="text-gray-400 animate-pulse">Getting recommendation...</p>
+                <p className="text-slate-400 animate-pulse">Getting recommendation...</p>
             )}
 
             {recommendation && (
-                <div className="bg-gray-700 rounded-xl p-4 mt-2">
+                <div className="bg-slate-800 border border-slate-700 rounded-xl p-4 mt-2">
                     <p className="text-white leading-relaxed">{recommendation}</p>
 
                     {!feedback ? (
                         <div className="flex gap-3 mt-4">
                             <button
                                 onClick={() => handleFeedback('helpful')}
-                                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition"
+                                className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg transition btn-anim focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
                             >
                                 👍 Helpful
                             </button>
                             <button
                                 onClick={() => handleFeedback('not-helpful')}
-                                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition"
+                                className="bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-lg transition btn-anim focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300"
                             >
                                 👎 Not Helpful
                             </button>
                         </div>
                     ) : (
-                        <p className="text-gray-400 mt-4 text-sm">
+                        <p className="text-slate-400 mt-4 text-sm">
                             Thanks for the feedback! {feedback === 'helpful' ? '😊' : '🙏'}
                         </p>
                     )}
