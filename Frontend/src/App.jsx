@@ -9,6 +9,7 @@ import Navbar from './components/Navbar.jsx'
 import ProtectedRoute from './components/ProtectedRoutes.jsx'
 import DishChat from './pages/DishChat.jsx'
 import NotFound from './pages/NotFound.jsx'
+import Register from './pages/Register.jsx'
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/dish/:id' element={<DishChat />} />
         <Route path='*' element={<NotFound />} />
+        <Route path='/register' element={<Register />} />
       </Routes>
     </BrowserRouter>
   )
