@@ -42,7 +42,6 @@ function Login() {
             console.log(err);
         }
     }
-    console.log(import.meta.env.VITE_API_URL)
 
     return (
         <div className="relative min-h-screen overflow-hidden bg-slate-950 flex items-center justify-center page-fade-in">
