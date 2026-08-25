@@ -12,19 +12,34 @@ function Admin() {
 
     const categoryCount = new Set(items.map(item => item.category)).size
 
-
-
-    function handleAdd() {
+    async function handleAdd() {
         if (!dishName.trim() || !dishCategory || !dishWaitTime) {
             alert('Please fill all the fields')
             return
         }
-        setItems([...items, { id: Date.now(), name: dishName, category: dishCategory, waitTime: dishWaitTime }])
-        setDishName('')
-        setDishCategory('')
-        setDishWaitTime('')
-        setSuccess(true);
-        setTimeout(() => { setSuccess(false) }, 3000)
+        try {
+            const response = await fetch('http://localhost:3000/api/dishes/addDish', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({ name: dishName, category: dishCategory, wait_time: Number(dishWaitTime) })
+            })
+            if (response.ok) {
+                const newDish = await response.json()
+                setItems([...items, newDish])
+                setDishName('')
+                setDishCategory('')
+                setDishWaitTime('')
+                setSuccess(true)
+                setTimeout(() => setSuccess(false), 3000)
+            } else {
+                alert('Failed to add dish')
+            }
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     return (

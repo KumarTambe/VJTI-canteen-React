@@ -3,8 +3,6 @@ import { createContext, useEffect, useState } from "react";
 export const MenuContext = createContext();
 
 export function MenuProvider({ children }) {
-
-    const [messages, setMessages] = useState([])
     const [items, setItems] = useState([])
 
     useEffect(() => {
@@ -26,7 +24,7 @@ export function MenuProvider({ children }) {
 
 
     return (
-        <MenuContext.Provider value={{ items, setItems, messages, setMessages }}>
+        <MenuContext.Provider value={{ items, setItems }}>
             {children}
         </MenuContext.Provider >
     )
