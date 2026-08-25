@@ -1,19 +1,29 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const MenuContext = createContext();
 
 export function MenuProvider({ children }) {
 
-    const [messages, setMessages] = useState([
-        { id: 1, dishId: 1, user: 'XYZ', text: 'Idli is amazing today!' }
-    ])
+    const [messages, setMessages] = useState([])
+    const [items, setItems] = useState([])
 
-    const [items, setItems] = useState([
-        { id: 1, name: "Idli", category: "Breakfast", waitTime: "10 sec" },
-        { id: 2, name: "Dosa", category: "Breakfast", waitTime: "5 min" },
-        { id: 3, name: "Vadapav", category: "Snack", waitTime: "10 sec" },
-        { id: 4, name: "Noodles", category: "Heavy food", waitTime: "10 min" },
-    ])
+    useEffect(() => {
+        const url = "http://localhost:3000/api/dishes/getAllDishes"
+        async function fetchData() {
+            const response = await fetch(url, {
+                method: "GET",
+            })
+            if (!response.ok) {
+                console.log("An error occured")
+                return
+            } else {
+                const data = await response.json();
+                setItems(data);
+            }
+        }
+        fetchData();
+    }, [])
+
 
     return (
         <MenuContext.Provider value={{ items, setItems, messages, setMessages }}>

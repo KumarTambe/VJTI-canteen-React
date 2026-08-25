@@ -54,7 +54,7 @@ function Dashboard() {
                                     .map(item => (
                                         <div key={item.id} className="bg-gray-800 rounded-xl p-4 hover:bg-gray-700 transition">
                                             <h3 className="text-lg font-semibold">{item.name}</h3>
-                                            <p className="text-gray-400 text-sm mt-1">⏱ {item.waitTime}</p>
+                                            <p className="text-gray-400 text-sm mt-1">⏱ {item.wait_time}</p>
                                             <button
                                                 onClick={() => navigate(`/dish/${item.id}`)}
                                                 className="mt-3 text-sm text-orange-400 hover:text-orange-300 transition"
