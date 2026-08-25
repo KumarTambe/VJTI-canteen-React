@@ -8,6 +8,7 @@ function Navbar() {
     const navigate = useNavigate();
 
     function handleLogOut() {
+        localStorage.removeItem('token')
         setIsLoggedIn(false);
         setIsAdmin(false)
         setUser(null);
@@ -40,12 +41,20 @@ function Navbar() {
                         </button>
                     </>
                 ) : (
-                    <button
-                        onClick={handleLogIn}
-                        className="bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded-lg transition"
-                    >
-                        Login
-                    </button>
+                    <>
+                        <button
+                            onClick={handleLogIn}
+                            className="bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded-lg transition"
+                        >
+                            Login
+                        </button>
+                        <button
+                            onClick={() => navigate('/register')}
+                            className="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg transition"
+                        >
+                            Register
+                        </button>
+                    </>
                 )}
             </div>
         </nav>

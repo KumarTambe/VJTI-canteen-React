@@ -8,7 +8,7 @@ function ProtectedRoute({ children }) {
     return (
         <>
             {
-                isLoggedIn ?
+                isLoggedIn || localStorage.getItem('token') ?
                     children
                     :
                     <Navigate to='/login' />
