@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 function Login() {
-    const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+    const { isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin } = useContext(AuthContext);
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false)
@@ -21,7 +21,7 @@ function Login() {
             triggerShake()
             return
         }
-        const url = "http://localhost:3000/api/auth/login"
+        const url = `${import.meta.env.VITE_API_URL}/api/auth/login`
         try {
             const response = await fetch(url, {
                 method: 'POST',
@@ -36,13 +36,13 @@ function Login() {
                 localStorage.setItem('token', data.token)
                 setIsLoggedIn(true);
                 navigate('/dashboard')
-
+                if (data.role === 'admin') setIsAdmin(true)
             }
         } catch (err) {
             console.log(err);
         }
-
     }
+    console.log(import.meta.env.VITE_API_URL)
 
     return (
         <div className="relative min-h-screen overflow-hidden bg-slate-950 flex items-center justify-center page-fade-in">

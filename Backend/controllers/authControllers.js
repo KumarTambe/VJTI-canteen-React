@@ -35,8 +35,8 @@ export async function Login(req, res) {
             if (!isMatch) {
                 res.status(401).json({ message: "Wrong password" })
             } else {
-                const token = jwt.sign({ id: result.rows[0].id }, process.env.JWT_SECRET)
-                res.status(200).json({ message: "Login successful", token })
+                const token = jwt.sign({ id: result.rows[0].id, role: result.rows[0].role }, process.env.JWT_SECRET)
+                res.status(200).json({ message: "Login successful", token, role: result.rows[0].role })
             }
         }
     }

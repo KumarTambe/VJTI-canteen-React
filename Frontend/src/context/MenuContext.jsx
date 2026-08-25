@@ -6,7 +6,7 @@ export function MenuProvider({ children }) {
     const [items, setItems] = useState([])
 
     useEffect(() => {
-        const url = "http://localhost:3000/api/dishes/getAllDishes"
+        const url = `${import.meta.env.VITE_API_URL}/api/dishes/getAllDishes`
         async function fetchData() {
             const response = await fetch(url, {
                 method: "GET",

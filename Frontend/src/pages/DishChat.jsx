@@ -14,7 +14,7 @@ function DishChat() {
 
     async function getMessages() {
         try {
-            const response = await fetch(`http://localhost:3000/api/dishes/${id}/getAllMessages`)
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/dishes/${id}/getAllMessages`)
             if (!response.ok) {
                 console.log("We ran into an error while fetching");
             } else {
@@ -34,7 +34,7 @@ function DishChat() {
     async function handleSubmit() {
         if (!msg.trim()) return
         try {
-            const response = await fetch(`http://localhost:3000/api/dishes/${id}/sendMessage`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/dishes/${id}/sendMessage`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
