@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { MenuContext } from "../context/MenuContext";
 
 function Admin() {
@@ -9,8 +9,16 @@ function Admin() {
     const [dishCategory, setDishCategory] = useState('');
     const [dishWaitTime, setDishWaitTime] = useState('');
     const [success, setSuccess] = useState(false);
+    const [topDishes, setTopDishes] = useState([])
 
     const categoryCount = new Set(items.map(item => item.category)).size
+
+    useEffect(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/api/analytics/top-dishes`)
+            .then(res => res.json())
+            .then(data => setTopDishes(data))
+            .catch(err => console.log(err))
+    }, [])
 
     async function handleAdd() {
         if (!dishName.trim() || !dishCategory || !dishWaitTime) {
@@ -135,6 +143,32 @@ function Admin() {
                     </div>
                 )}
             </div>
+
+            {topDishes.length > 0 && (
+                <div className="mt-8">
+                    <h2 className="text-sm font-bold uppercase tracking-widest text-indigo-300 mb-3">🔥 Top Dishes by Activity</h2>
+                    <div className="surface-card overflow-hidden">
+                        <table className="w-full text-left text-sm">
+                            <thead>
+                                <tr className="border-b border-slate-700 text-slate-500 uppercase tracking-wider text-xs">
+                                    <th className="px-4 py-3">Rank</th>
+                                    <th className="px-4 py-3">Dish</th>
+                                    <th className="px-4 py-3">Messages</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {topDishes.map((dish, index) => (
+                                    <tr key={dish.id} className="border-b border-slate-800 last:border-none hover:bg-slate-800/60 transition">
+                                        <td className="px-4 py-3 text-amber-400 font-bold">#{index + 1}</td>
+                                        <td className="px-4 py-3 font-semibold">{dish.name}</td>
+                                        <td className="px-4 py-3 text-slate-300">{dish.message_count}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            )}
 
             {success && (
                 <div className="fixed top-20 right-6 bg-emerald-600 text-white px-5 py-3 rounded-lg shadow-lg flex items-center gap-2 toast-in z-50">
